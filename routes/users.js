@@ -27,8 +27,20 @@ router.get('/login', function(req, res) {
 
 router.post('/login', function(req, res) {
   console.log(req.body)
-  res.end()
+  res.redirect('/users/dashboard')
 });
+
+router.get('/dashboard', function(req, res) {
+  var db = admin.database();
+  var EventRef = db.ref("registerapp").child('events')
+
+  
+  EventRef.on('child_added', (event_snapshot) => {
+    console.log(event_snapshot.val())
+  })
+
+  res.render('dashboard.pug', {title: "Dashboard"})
+})
 
 
 module.exports = router;
