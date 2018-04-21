@@ -30,16 +30,31 @@ router.post('/login', function(req, res) {
   res.redirect('/users/dashboard')
 });
 
-router.get('/dashboard', function(req, res) {
-  var db = admin.database();
-  var EventRef = db.ref("registerapp").child('events')
 
-  
-  EventRef.orderByKey().on('child_added', (event_snapshot) => {
-    console.log(event_snapshot.val())
-  })
 
-  res.render('dashboard.pug', {title: "Dashboard"})
+router.get('/dashboard', function(req, res, next) {
+    var db = admin.database();
+    var EventRef = db.ref("registerapp").child('events')
+
+    EventRef.orderByKey().limitToLast(1).on('child_added', (recent_event_snapshot) => {
+      req.recent_event = recent_event_snapshot.val()
+    })
+
+    EventRef.orderByKey().on('value', (all_events) => {
+      req.events = all_events.val()
+      console.log(all_events.key)
+      req.event_count = all_events.numChildren()
+    })
+
+    next()
+}, (req, res, next) => {
+    var dash_data = {
+      recent_event: req.recent_event,
+      events: req.events,
+      event_count: req.event_count
+    }
+    console.log(dash_data)
+    res.render('dashboard.pug', {title: "Dashboard", data:dash_data})
 })
 
 

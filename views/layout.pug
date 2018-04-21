@@ -3,7 +3,9 @@ html
   head
     title= title
     link(rel='stylesheet', href='/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/font-awesome.min.css')
+    block css
+        link(rel='stylesheet', href='/css/style.css')
   body
 
     block nav
@@ -27,11 +29,11 @@ html
             // /.container-fluid
 
             
-    .container
-        block content
+ 
+    block content
 
-        footer.text-center
-          p &copy Copyright 2018 | Attendavia | Policy | Terms
+    footer.text-center
+        p &copy Copyright 2018 | Attendavia | Policy | Terms
     script(src="/js/jquery.min.js")
     script(src="/js/bootstrap.min.js")
     
