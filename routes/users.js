@@ -37,7 +37,10 @@ router.get('/dashboard', function(req, res, next) {
     var EventRef = db.ref("registerapp").child('events')
 
     EventRef.orderByKey().limitToLast(1).on('child_added', (recent_event_snapshot) => {
-      req.recent_event = recent_event_snapshot.val()
+      recent_event = recent_event_snapshot.val()
+      recent_event['key'] = recent_event_snapshot.key
+      req.recent_event = recent_event
+      console.log(recent_event)
     })
 
     EventRef.orderByKey().on('value', (all_events) => {

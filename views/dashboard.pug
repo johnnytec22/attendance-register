@@ -52,22 +52,25 @@ block content
                 .col-lg-4.col-md-4.col-sm-4.col-xs-12
                     .panel.panel-primary.overview_content#upcoming_event
                         .panel-heading.text-center
-                            h2.strong PyCON Nigeria
-                            p Lagos, Nigeria
-                            p.small Upcoming
+                            h2.strong=data.recent_event.title
+                            p=data.recent_event.location
+                            if (data.recent_event.status)
+                                p.small Upcoming
+                            else
+                                p.small Held
                         .panel-body
                             .row
                                 .col-lg-6.col-md-6.col-sm-6.col-xs-6
                                     div#host
                                         strong Host
-                                        p John Obi
+                                        p=data.recent_event.host
                                 .col-lg-6.col-md-6.col-sm-6.col-xs-6
                                     div.text-right#date
                                         strong Date
-                                        p 5 Apr 2018
+                                        p=data.recent_event.date
 
                         .panel-footer
-                            a.btn.btn-primary.btn-sm(href="/events/kdlakfa879807") VIEW
+                            a.btn.btn-primary.btn-sm(href='/events/'+data.recent_event.key) VIEW
                         
                 .col-lg-4.col-md-4.col-sm-4.col-xs-12
                     .well.text-center.overview_content
@@ -82,25 +85,26 @@ block content
     section#events 
         .container
             .row
-                .col-lg-3.col-md-3.col-sm-6.col-xs-12
-                    .panel.panel-primary.overview_content#upcoming_event
-                        .panel-heading.text-center
-                            h2.strong PyCON Nigeria
-                            p Lagos, Nigeria
-                            p.small Upcoming
-                        .panel-body
-                            .row
-                                .col-lg-6.col-md-6.col-sm-6.col-xs-6
-                                    div#host
-                                        strong Host
-                                        p John Obi
-                                .col-lg-6.col-md-6.col-sm-6.col-xs-6
-                                    div.text-right#date
-                                        strong Date
-                                        p 5 Apr 2018
+                each value, key in data.events
+                    .col-lg-3.col-md-3.col-sm-6.col-xs-12
+                        .panel.panel-primary.overview_content#upcoming_event
+                            .panel-heading.text-center
+                                h2.strong= value.title
+                                p=value.location
+                                p.small Upcoming
+                            .panel-body
+                                .row
+                                    .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                                        div#host
+                                            strong Host
+                                            p John Obi
+                                    .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                                        div.text-right#date
+                                            strong Date
+                                            p 5 Apr 2018
 
-                        .panel-footer
-                            a.btn.btn-primary.btn-sm(href="/events/kdlakfa879807") VIEW
+                            .panel-footer
+                                a.btn.btn-primary.btn-sm(href="/events/kdlakfa879807") VIEW
 
                 
 
