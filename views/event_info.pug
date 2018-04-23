@@ -1,8 +1,36 @@
 extends dashboard.pug
 
 block content
+    section#event_detail
+        .container
+            .row
+                .col-md-7.col-sm-7.col-xs-12.event_heading
+                    .well.text-center
+                        h2=data.title
+                        if(data.status)
+                            p Held
+                        else
+                            p Upcoming
 
-    .container
-        .row
-            .col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2.col-xs-12
-                
+                        a.btn.btn-primary(href="/events/"+data.key+"/edit") EDIT INFO
+                    .btn_container.text-center
+                        a.btn.btn-default(href="/events/guests") Guest 
+                        a.btn.btn-primary(href="/events/guest/add") Add Guest
+
+                .col-md-5.col-sm-5.col-xs-12
+                    .well
+                        strong Location  
+                        span=data.location
+
+                    .well
+                        strong Date  
+                        span=data.date
+
+                    .well 
+                        strong Event Starts  
+                        span=data.time
+
+                    .well
+                        strong Host  
+                        span=data.host
+

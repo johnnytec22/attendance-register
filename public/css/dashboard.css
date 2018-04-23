@@ -22,7 +22,7 @@ nav, .nav, .navbar-nav, .navbar-inverse {
     border: 0;
     background: white;
     padding-top: 25px;
-    box-shadow: 0 4px 12px 2px rgb(0,0,0, 0.2);    
+    box-shadow: 0 4px 12px 2px rgba(0,0,0, 0.2);    
 
 }
 
@@ -62,7 +62,7 @@ section#events {
 }
 #events .events.panel {
     border: 0 !important;
-    box-shadow: 0 1px 2px 1px rgb(0,0,0, 0.1);
+    box-shadow: 0 1px 2px 1px rgba(0,0,0, 0.1);
 }
 #events .events .panel-heading {
     height: 130px;
@@ -80,4 +80,19 @@ section#events {
     color: white;
     background: black;
     border: 0;
+}
+
+#event_detail {
+    padding: 40px 0;
+    background: rgb(241, 241, 241);
+}
+
+#event_detail .event_heading .well {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.well {
+    border: 0;
+    background: white;
+    box-shadow: 0 3px 6px 2px rgba(0,0,0, 0.05)
 }
