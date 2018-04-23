@@ -1,25 +1,26 @@
 extends layout
 
 block content
-    h1 Register Free Your Account
+    .container
+        h1 Register Free Your Account
 
-    if error
-        p Erro: #{error}
+        if error
+            p Erro: #{error}
 
-    form(action="/users/register" method="POST")
-        label Username: 
-        br
-        input(type="text", name='username', required)
-        br
-    
-        label Email: 
-        br
-        input(type="email", name='email', required)
-        br
+        form(action="/users/register" method="POST")
+            label Username: 
+            br
+            input(type="text", name='username', required)
+            br
+        
+            label Email: 
+            br
+            input(type="email", name='email', required)
+            br
 
-        label Password
-        br
-        input(type="password", name="password")
+            label Password
+            br
+            input(type="password", name="password")
 
-        br
-        input(type='submit')
+            br
+            input(type='submit')

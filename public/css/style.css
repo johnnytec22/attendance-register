@@ -1,8 +1,12 @@
 nav.navbar {
     margin-bottom: 0 !important;
-
 }
-
+nav, .nav, .navbar-nav, .navbar-inverse {
+    background: black;
+    color: white;
+    border: 0;
+    border-radius: 0;
+}
 
 footer {
     margin-top: 50px;

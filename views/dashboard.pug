@@ -55,9 +55,9 @@ block content
                             h2.strong=data.recent_event.title
                             p=data.recent_event.location
                             if (data.recent_event.status)
-                                p.small Upcoming
-                            else
                                 p.small Held
+                            else
+                                p.small Upcoming
                         .panel-body
                             .row
                                 .col-lg-6.col-md-6.col-sm-6.col-xs-6
@@ -70,12 +70,12 @@ block content
                                         p=data.recent_event.date
 
                         .panel-footer
-                            a.btn.btn-primary.btn-sm(href='/events/'+data.recent_event.key) VIEW
+                            a.btn.btn-primary.btn-sm(href='/events/event/'+data.recent_event.key) VIEW
                         
                 .col-lg-4.col-md-4.col-sm-4.col-xs-12
                     .well.text-center.overview_content
                         h3.strong Events Recorded
-                        h1 3124
+                        h1=data.event_count
 
                 .col-lg-4.col-md-4.col-sm-4.col-xs-12
                     .well.text-center.overview_content
@@ -87,24 +87,28 @@ block content
             .row
                 each value, key in data.events
                     .col-lg-3.col-md-3.col-sm-6.col-xs-12
-                        .panel.panel-primary.overview_content#upcoming_event
+                        .panel.panel-primary.overview_content.events
                             .panel-heading.text-center
                                 h2.strong= value.title
                                 p=value.location
-                                p.small Upcoming
+                                if (value.status)
+                                    p.small Held
+                                else
+                                    p.small Upcoming
+
                             .panel-body
                                 .row
                                     .col-lg-6.col-md-6.col-sm-6.col-xs-6
                                         div#host
                                             strong Host
-                                            p John Obi
+                                            p= value.host
                                     .col-lg-6.col-md-6.col-sm-6.col-xs-6
                                         div.text-right#date
                                             strong Date
-                                            p 5 Apr 2018
+                                            p= value.date
 
                             .panel-footer
-                                a.btn.btn-primary.btn-sm(href="/events/"+key) VIEW
+                                a.btn.btn-primary.btn-sm(href="/events/event/"+key) VIEW
 
                 
 

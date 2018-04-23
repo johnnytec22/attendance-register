@@ -1,23 +1,24 @@
 extends layout
 
 block content
-    h1 Login To Your Account
+    .container
+        h1 Login To Your Account
 
-    if error
-        p Erro: #{error}
+        if error
+            p Erro: #{error}
 
-    form(action="/users/login" method="POST")
-        label Username: 
-        br
-        input(type="text", name='username', required)
-        br
-        br
-        label Password
-        br
-        input(type="password", name="password")
+        form(action="/users/login" method="POST")
+            label Username: 
+            br
+            input(type="text", name='username', required)
+            br
+            br
+            label Password
+            br
+            input(type="password", name="password")
+
+            br
+            input(type='submit')
 
         br
-        input(type='submit')
-
-    br
-    p Don't have an account? <a href="/users/register">Register now</a>
+        p Don't have an account? <a href="/users/register">Register now</a>
