@@ -14,8 +14,9 @@ block content
 
                         a.btn.btn-primary(href="/events/"+data.key+"/edit") EDIT INFO
                     .btn_container.text-center
-                        a.btn.btn-default(href="/events/guests") Guest 
-                        a.btn.btn-primary(href="/events/guest/add") Add Guest
+                        a.btn.btn-default(href="/events/"+data.key+"/guests") Guest
+                        |   
+                        a.btn.btn-primary(href="/events/"+data.key+"/add_guest") Add Guest
 
                 .col-md-5.col-sm-5.col-xs-12
                     .well
