@@ -35,3 +35,46 @@ block content
                         strong Host  
                         span=data.host
 
+                    .well
+                        strong Guests  
+                        span=data.guest_count
+
+
+    section#recent_guest
+        .container
+            .row
+                .text-center(style="padding-top: 50px;")
+                    h4 Registered Guests
+                .table-responsive(style="padding-top: 50px;")
+                    table.table.table-bordered.table-strip
+                        thead
+                            tr
+                                td #
+                                td Full Name
+                                td Phone
+                                td Email
+                                td Time In
+                                td Time Out
+                                td
+                        tbody
+                            if (data.recent_guests)
+                                -var count = 1
+                                each guest,key in data.recent_guests
+                                    tr
+                                        td=count++
+                                        td=guest.full_name
+                                        td=guest.Phone
+                                        td=guest.email
+                                        td=guest.time_in
+                                        td=guest.time_out
+                                        td 
+                                            .button_container
+                                                a.btn.btn-default(href="/guests/"+key+"/edit") Edit
+                                                a.btn.btn-danger(href="/guests/"+key+"/delete") Delete
+                            else
+                                tr.text-center
+                                    td(colspan="7") No Guest Registered
+                                                
+
+
+

@@ -3,7 +3,7 @@ var router = express.Router()
 
 var admin = require('firebase-admin')
 
-
+//gets and displays information for a single event 
 router.get('/event/:key', (req, res) => {
     var key = req.params.key;
 
@@ -13,10 +13,19 @@ router.get('/event/:key', (req, res) => {
     ref.once('value', (event_data) => {
         var data = event_data.val();
         data['key'] = event_data.key;
+
+        var guestRef = db.ref('registerapp').child('guests').child(key)
+        guestRef.on('value', (snap) => {
+            data['guest_count'] = snap.numChildren();
+            data['recent_guests'] = snap.val();
+   
+            res.render('event_info.pug', {'data':data})
+        })
         
-        res.render('event_info.pug', {'data':data})
+        
     })
 }) 
+
 
 router.get('/:key/edit', (req, res) => {
     var key = req.params.key;
@@ -33,6 +42,7 @@ router.get('/:key/edit', (req, res) => {
 
 });
 
+
 router.post('/:key/update', (req, res) => {
     var key = req.params.key;
 
@@ -47,21 +57,47 @@ router.post('/:key/update', (req, res) => {
  
 });
 
+
 router.get('/:title/:key/add_guest', (req, res) => {
     var key = req.params.key;
     var title = req.params.title;
-    res.render('add_guest.pug', {'event_title': title, 'key': key})
+
+    var context = {
+        'key':key,
+        'event_title':title
+    };
+    if (req.query.msg) {
+        context['success_msg'] = req.query.msg;
+    }
+
+    console.log(context)
+    var db = admin.database();
+    var ref = db.ref('registerapp').child('guests').child(key);
+
+    ref.on('value', (snap) => {
+        var guest_count = snap.numChildren();
+        context['guest_count'] = guest_count;
+
+        res.render('add_guest.pug', context)
+    })
+
+    
 })
 
-router.post('/:key/add_guest', (req, res) => {
+router.post('/:title/:key/add_guest', (req, res) => {
     var key = req.params.key;
+    var title = req.params.title;
     
     var db = admin.database();
     var ref = db.ref('registerapp').child('guests').child(key);
-    ref.push(req.body).then(function(added_guest) {
-        res.send(added_guest.full_name+" has been successfully registered");
-    }).catch(function(error) {
-        res.send("Error: Data not saved, Please try again")
+
+    ref.push(req.body, (error) => {
+        if(error) {
+            res.send('Error!');
+        }else{
+            var success_msg = encodeURIComponent(req.body.full_name+" was succesfully registered");
+            res.redirect('/events/'+title+'/'+key+'/add_guest?msg='+success_msg)
+        }
     })
 })
 module.exports = router;
