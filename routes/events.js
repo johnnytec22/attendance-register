@@ -47,6 +47,21 @@ router.post('/:key/update', (req, res) => {
  
 });
 
+router.get('/:title/:key/add_guest', (req, res) => {
+    var key = req.params.key;
+    var title = req.params.title;
+    res.render('add_guest.pug', {'event_title': title, 'key': key})
+})
 
-
+router.post('/:key/add_guest', (req, res) => {
+    var key = req.params.key;
+    
+    var db = admin.database();
+    var ref = db.ref('registerapp').child('guests').child(key);
+    ref.push(req.body).then(function(added_guest) {
+        res.send(added_guest.full_name+" has been successfully registered");
+    }).catch(function(error) {
+        res.send("Error: Data not saved, Please try again")
+    })
+})
 module.exports = router;
