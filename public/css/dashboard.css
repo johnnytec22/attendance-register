@@ -1,28 +1,55 @@
+nav {
+    box-shadow: 0 3px 5px 0 rgba(0,0,0, 0.05);
+}
+
 nav.navbar {
     margin-bottom: 0 !important;
 }
 nav, .nav, .navbar-nav, .navbar-inverse {
-    background: black;
+    background: transparent;
     color: white;
     border: 0;
     border-radius: 0;
+
 }
+.navbar-inverse {
+    background: white;
 
-
+}
+.navbar-nav li a{
+    color: dodgerblue !important;
+    font-weight: bold;
+}
+.navbar-nav li.dropdown ul.dropdown-menu > li a{
+    font-weight: 500;
+    color: black  !important;
+}
 #overview {
     background: white;
-    padding: 20px 0;
+    background-image: linear-gradient(to right, rgb(0, 60, 255), red);
+    padding: 150px 0 50px;
+    
 }
 
 #overview .panel {
     border: 0;
-    box-shadow: 0 4px 12px 2px rgb(0,0,0, 0.2);
+    box-shadow: 0 4px 12px 2px rgba(0,0,0, 0.05);
+    border-radius: 5px !important;
+}
+#overview .panel .panel-footer {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+#overview .panel .panel-heading {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 }
 #overview .well {
     border: 0;
     background: white;
     padding-top: 25px;
-    box-shadow: 0 4px 12px 2px rgba(0,0,0, 0.2);    
+    box-shadow: 2px 2px 4px 5px rgba(0,0,0, 0.05);    
+    border-radius: 5px;
 
 }
 
@@ -35,13 +62,14 @@ nav, .nav, .navbar-nav, .navbar-inverse {
     padding: 34px 15px;
     background: black;
     border: none;
+    height: 167px;
 }
 #overview .row > div .overview_content#upcoming_event .panel-body  p {
     margin: 0;
 }
 #overview .row > div .overview_content#upcoming_event .panel-heading h2 {
     padding: 0;
-
+    font-size: 25px;
 }
 #overview .row > div .overview_content#upcoming_event .panel-heading p {
     padding: 0;
@@ -58,11 +86,10 @@ nav, .nav, .navbar-nav, .navbar-inverse {
 /*event section styles*/
 section#events {
     padding: 60px 0;
-    background: rgb(243, 241, 241);
+    background: white;
 }
 #events .events.panel {
-    border: 0 !important;
-    box-shadow: 0 1px 2px 1px rgba(0,0,0, 0.1);
+    border-color: black;
 }
 #events .events .panel-heading {
     height: 130px;
@@ -82,10 +109,15 @@ section#events {
     border: 0;
 }
 
-#event_detail {
+
+
+/* event info page styles*/
+
+section#event_detail {
+    background-image: linear-gradient(to right, rgb(0, 60, 255), red);
     padding: 40px 0;
-    background: rgb(241, 241, 241);
 }
+
 
 #event_detail .event_heading .well {
     padding-top: 100px;
@@ -96,3 +128,11 @@ section#events {
     background: white;
     box-shadow: 0 3px 6px 2px rgba(0,0,0, 0.05)
 }
+
+section#recent_guest table thead tr{
+    background-image: linear-gradient(to right, rgb(0, 60, 255), red);
+    color: white;
+    font-weight: bold;
+    border: 0 !important;
+}
+

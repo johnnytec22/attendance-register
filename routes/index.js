@@ -20,12 +20,12 @@ router.post('/add_event', (req, res) => {
     status = false
   }
   var new_event = {
-    title : req.body.title,
-    location : req.body.location,
-    host : req.body.host,
-    date : req.body.date,
-    time : req.body.time,
-    status : status
+    'title' : req.body.title,
+    'location' : req.body.location,
+    'host' : req.body.host,
+    'date' : req.body.date,
+    'time' : req.body.time,
+    'status' : status
   }
   var db = admin.database();
   var ref = db.ref("registerapp");

@@ -1,7 +1,10 @@
 extends dashboard.pug
 
+
+
 block content
-    section#event_detail
+    
+    section#event_detail(style="padding-top: 100px;")
         .container
             .row
                 .col-md-7.col-sm-7.col-xs-12.event_heading
@@ -46,16 +49,16 @@ block content
                 .text-center(style="padding-top: 50px;")
                     h4 Registered Guests
                 .table-responsive(style="padding-top: 50px;")
-                    table.table.table-bordered.table-strip
+                    table.table.table-bordered.table-stripe
                         thead
-                            tr
+                            tr.text-center
                                 td #
                                 td Full Name
                                 td Phone
                                 td Email
                                 td Time In
                                 td Time Out
-                                td
+                                td 
                         tbody
                             if (data.recent_guests)
                                 -var count = 1
@@ -68,9 +71,10 @@ block content
                                         td=guest.time_in
                                         td=guest.time_out
                                         td 
-                                            .button_container
-                                                a.btn.btn-default(href="/guests/"+key+"/edit") Edit
-                                                a.btn.btn-danger(href="/guests/"+key+"/delete") Delete
+                                            .button_container.text-center
+                                                a.btn.btn-default(href="/guests/"+data.key+'/'+key+"/edit?event="+data.title) Edit
+                                                | 
+                                                a.btn.btn-danger(href="/guests/"+data.key+'/'+key+"/delete") Delete
                             else
                                 tr.text-center
                                     td(colspan="7") No Guest Registered

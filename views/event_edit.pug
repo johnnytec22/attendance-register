@@ -2,39 +2,41 @@ extends dashboard.pug
 
 
 block content
-    .row
-        .col-lg-4.col-lg-offset-4.col-md-4.col-md-offset-4.col-sm-4.col-sm-offset-4.col-xs-12
-            form(action="/events/"+data.key+"/update", method="POST")
-                .form-group
-                    
-                    label Title
-                    input.form-control(type="text", name="title", placeholder="Event title", value=data.title)
+    section#edit_event(style="padding: 100px 0;")
+        .container
+            .row
+                .col-lg-4.col-md-4.col-sm-4.col-xs-12
+                    form(action="/events/"+data.key+"/update", method="POST")
+                        .form-group
+                            
+                            label Title
+                            input.form-control(type="text", name="title", placeholder="Event title", value=data.title)
 
-                .form-group
-                    
-                    label Location
-                    input.form-control(type="text", name="location", placeholder="Event location", value=data.location)
+                        .form-group
+                            
+                            label Location
+                            input.form-control(type="text", name="location", placeholder="Event location", value=data.location)
 
-                .form-group
-                    
-                    label Host
-                    input.form-control(type="text", name="host", placeholder="Event host" , value=data.host)
+                        .form-group
+                            
+                            label Host
+                            input.form-control(type="text", name="host", placeholder="Event host" , value=data.host)
 
-                .form-group
-                    
-                    label Date
-                    input.form-control(type="date", name="date", value=data.date)
+                        .form-group
+                            
+                            label Date
+                            input.form-control(type="date", name="date", value=data.date)
 
-                .form-group
-                    
-                    label Time
-                    input.form-control(type="time", name="time", value=data.time)
+                        .form-group
+                            
+                            label Time
+                            input.form-control(type="time", name="time", value=data.time)
 
-                .form-group
-                    
-                    label Status
-                    select.form-control(type="text", name="status", value=(data.status ? "Held" : "Upcoming"))
-                        option(value="true") Held
-                        option(value="false") Upcoming
+                        .form-group
+                            
+                            label Status
+                            select.form-control(type="text", name="status", value=(data.status ? "Held" : "Upcoming"))
+                                option(value="true") Held
+                                option(value="false") Upcoming
 
-                input.btn.btn-primary.btn-block(type="submit", value="Save" )
+                        input.btn.btn-primary.btn-block(type="submit", value="Save" )

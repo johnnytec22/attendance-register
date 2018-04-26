@@ -2,56 +2,57 @@ extends dashboard
 
 block content
 
-    .container.text-center
+    section#add_guest(style="padding: 100px 0;")
+        .container.text-center
 
-        
-        .row
-            h3=event_title
+            
+            .row
+                h3=event_title
 
-        br
-        .row
-            .col-lg-4.col-md-4.col-sm-4.col-xs-12
+            br
+            .row
+                .col-lg-4.col-md-4.col-sm-4.col-xs-12
 
-                if(success_msg)
-                    h4(style="color: green; padding: 20px 0; background: white; box-shadow: 0 4px 6px 5px rgba(0,0,0,0.05); border-radius: 3px; margin-bottom: 40px;")=success_msg
-                else if (error_msg)
-                    h4 Guest not saved, please try again
+                    if(success_msg)
+                        h4(style="color: green; padding: 20px 0; background: white; box-shadow: 0 4px 6px 5px rgba(0,0,0,0.05); border-radius: 3px; margin-bottom: 40px;")=success_msg
+                    else if (error_msg)
+                        h4 Guest not saved, please try again
 
-                h4 ADD GUEST
-                br
-                
-                form(action="/events/"+event_title+'/'+key+"/add_guest", method="POST")
-                    .form-group
-                        
-                        label Full Name
-                        input.form-control(type="text", name="full_name", placeholder="Guest Name" )
+                    h4 ADD GUEST
+                    br
+                    
+                    form(action="/events/"+event_title+'/'+key+"/add_guest", method="POST")
+                        .form-group
+                            
+                            label Full Name
+                            input.form-control(type="text", name="full_name", placeholder="Guest Name" )
 
-                    .form-group
-                        
-                        label Phone
-                        input.form-control(type="text", name="Phone", placeholder="Guest Phone" )
+                        .form-group
+                            
+                            label Phone
+                            input.form-control(type="text", name="Phone", placeholder="Guest Phone" )
 
-                    .form-group
-                        
-                        label Email
-                        input.form-control(type="email", name="email", placeholder="Guest Email" )
+                        .form-group
+                            
+                            label Email
+                            input.form-control(type="email", name="email", placeholder="Guest Email" )
 
-                    .form-group
-                        
-                        label Time In
-                        input.form-control(type="time", name="time_in")
+                        .form-group
+                            
+                            label Time In
+                            input.form-control(type="time", name="time_in")
 
-                    .form-group
-                        
-                        label Time Out
-                        input.form-control(type="time", name="time_out")
+                        .form-group
+                            
+                            label Time Out
+                            input.form-control(type="time", name="time_out")
 
-                    input.btn.btn-primary.btn-block(type="submit", value="SAVE" )
+                        input.btn.btn-primary.btn-block(type="submit", value="SAVE" )
 
-            .col-lg-4.col-md-4.col-sm-4.col-xs-12.pull-right
-                .well.text-center
-                    h4 Guests Registered
-                    if (guest_count)
-                        h2= guest_count
-                    else
-                        h2 None yet
+                .col-lg-4.col-md-4.col-sm-4.col-xs-12.pull-right
+                    .well.text-center
+                        h4 Guests Registered
+                        if (guest_count)
+                            h2= guest_count
+                        else
+                            h2 None yet

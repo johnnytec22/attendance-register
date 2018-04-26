@@ -26,7 +26,7 @@ router.get('/event/:key', (req, res) => {
     })
 }) 
 
-
+//take care of requests asking for a platform or form to edit and event
 router.get('/:key/edit', (req, res) => {
     var key = req.params.key;
 
@@ -42,7 +42,7 @@ router.get('/:key/edit', (req, res) => {
 
 });
 
-
+//posts data from and edited event form
 router.post('/:key/update', (req, res) => {
     var key = req.params.key;
 
@@ -50,7 +50,7 @@ router.post('/:key/update', (req, res) => {
     var ref = db.ref('registerapp').child('events').child(key);
 
     ref.update(req.body).then(function(doc) {
-        res.redirect('/events/'+key+'/edit')
+        res.redirect('/events/event/'+key)
     }).catch(function(error) {
         res.send('error: Please, try again')
     })
@@ -70,7 +70,7 @@ router.get('/:title/:key/add_guest', (req, res) => {
         context['success_msg'] = req.query.msg;
     }
 
-    console.log(context)
+
     var db = admin.database();
     var ref = db.ref('registerapp').child('guests').child(key);
 
