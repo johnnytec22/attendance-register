@@ -10,10 +10,7 @@ block content
                 .col-md-7.col-sm-7.col-xs-12.event_heading
                     .well.text-center
                         h2=data.title
-                        if(data.status)
-                            p Held
-                        else
-                            p Upcoming
+                        p=data.status
 
                         a.btn.btn-primary(href="/events/"+data.key+"/edit") EDIT INFO
                     .btn_container.text-center
@@ -72,9 +69,47 @@ block content
                                         td=guest.time_out
                                         td 
                                             .button_container.text-center
-                                                a.btn.btn-default(href="/guests/"+data.key+'/'+key+"/edit?event="+data.title) Edit
+                                                button.btn.btn-default#edit_btn(href="/guests/"+data.key+'/'+key+"/edit") Edit
                                                 | 
-                                                a.btn.btn-danger(href="/guests/"+data.key+'/'+key+"/delete") Delete
+                                                a.btn.btn-danger#delete_btn(href="/guests/"+data.key+'/'+key+"/delete") Delete
+                                    
+                                    #guest_edit_modal
+                                        .modal_content
+                                            if(success_msg)
+                                                p(style="color: green; padding: 20px 0; background: white; box-shadow: 0 4px 6px 5px rgba(0,0,0,0.05); border-radius: 3px; margin-bottom: 40px;")=success_msg
+                                            else if (error_msg)
+                                                h4 Guest data not saved, please try again
+
+                                            h4.text-uppercase EDIT #{guest.full_name}
+                                            br
+                                            
+                                            form(action="/guests/"+data.key+"/"+key+"/update", method="POST")
+                                                .form-group
+                                                    
+                                                    label Full Name
+                                                    input.form-control(type="text", name="full_name", placeholder="Guest Name", value=guest.full_name)
+
+                                                .form-group
+                                                    
+                                                    label Phone
+                                                    input.form-control(type="text", name="Phone", placeholder="Guest Phone", value=guest.Phone)
+
+                                                .form-group
+                                                    
+                                                    label Email
+                                                    input.form-control(type="email", name="email", placeholder="Guest Email", value=guest.email )
+
+                                                .form-group
+                                                    
+                                                    label Time In
+                                                    input.form-control(type="time", name="time_in", value=guest.time_in)
+
+                                                .form-group
+                                                    
+                                                    label Time Out
+                                                    input.form-control(type="time", name="time_out", value=guest.time_out)
+
+                                                input.btn.btn-primary.btn-block(type="submit", value="SAVE" )
                             else
                                 tr.text-center
                                     td(colspan="7") No Guest Registered

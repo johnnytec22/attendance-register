@@ -13,23 +13,10 @@ router.get('/create_event', (req, res) => {
 
 router.post('/add_event', (req, res) => {
 
-  var status
-  if(req.body.status == 'true') {
-    status = true
-  }else if (req.body.status == 'false'){
-    status = false
-  }
-  var new_event = {
-    'title' : req.body.title,
-    'location' : req.body.location,
-    'host' : req.body.host,
-    'date' : req.body.date,
-    'time' : req.body.time,
-    'status' : status
-  }
+
   var db = admin.database();
   var ref = db.ref("registerapp");
-  var eventRef = ref.child('events').push(new_event)
+  var eventRef = ref.child('events').push(req.body)
 
   res.redirect('/users/dashboard');
 })

@@ -1,10 +1,44 @@
 extends layout
 
+block css
+  link(rel="stylesheet", href='/css/index.css')
+
 block content
 
-  .container
-      h1= title
-      p Welcome to #{title}
 
-      br
-      p <a href="/users/register"> Create</a> and account or <a href="/users/login">Login</a> to continue
+
+    div#login_modal
+      div.modal_content.animate
+        h4.text-center Account Login
+
+        if error
+            p Erro: #{error}
+
+        form(action="/users/login" method="POST")
+            label Username: 
+            br
+            input(type="text", name='username', required)
+            br
+            br
+            label Password
+            br
+            input(type="password", name="password")
+
+            br
+            input(type='submit')
+
+        br
+        p Don't have an account? <a href="/users/register">Register now</a>
+        button.btn.btn-primary#close Close
+    
+
+    section#landing
+      .container.text-center
+          .header_text
+            h1 Welcome to Attendavia
+            h3 keep a good record of your guests
+
+            br
+            <a class="btn btn-default" href="/users/register"> REGISTER</a> or <a id="login_btn" class="btn btn-primary" href="/users/login">LOGIN</a>
+
+

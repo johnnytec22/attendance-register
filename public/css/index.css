@@ -1,0 +1,118 @@
+nav {
+    background: white;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0, 0.05)
+}
+ .navbar-inverse {
+    background: white;
+    border: 0;
+    border-radius: 0;
+}
+#landing {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(228, 228, 228);
+    min-height: 650px;
+    display: block;
+}
+
+.header_text {
+    display: inline-block;
+    margin-top: 20%;
+}
+
+.btn-primary {
+    color: white;
+    background: dodgerblue;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 0;
+}
+.btn-primary:hover {
+    opacity: 0.5;
+    background: dodgerblue;
+}
+
+.btn-default {
+    color: black;
+    border-color: black;
+    box-shadow: 0;
+    border-radius: 0;
+    background: white;
+}
+.btn-default:hover {
+    background: black;
+    color:  white;
+    border-color: black;
+}
+
+
+/*login modal**/
+
+form {
+    border: 1px solid lightgray;
+    display: inline-block;
+    padding: 20px 10px;
+    margin: 40px 0 20px;
+    border-radius: 3px;
+
+}
+form h4 {
+    background: lightgray;
+    margin: 0;
+    padding: 18px 0;
+    margin-bottom: 20px;
+}
+form .form-inner {
+    padding: 0px 15px 40px;
+}
+input {
+    width: 250px;
+    height: 40px;
+    font-size: 19px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+input[type=submit] {
+    margin-top: 15px;
+    background: dodgerblue;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+}
+
+#login_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+#login_modal .modal_content {
+    background: white;
+    margin: 5% auto 15% auto;
+    width: 45%;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 3px 5px 0 rgba(0,0,0,0.4);
+}
+@-webkit-keyframes animatezoom {
+    from {
+        -webkit-transform: scale(0)
+    }
+    to {
+        -webkit-transform: scale(1)
+    }
+}
+@keyframes animatezoom {
+    from { transform: scale(0)}
+    to { transform: scale(1)}
+}
+
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s;
+}

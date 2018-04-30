@@ -1,0 +1,36 @@
+nav {
+    background: white;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0, 0.05)
+}
+ .navbar-inverse {
+    background: white;
+    border: 0;
+    border-radius: 0;
+}
+
+form {
+    border: 1px solid gray;
+    display: inline-block;
+    padding: 0;
+    margin: 50px 0 20px;
+}
+form h4 {
+    background: lightgray;
+    margin: 0;
+    padding: 18px 0;
+    margin-bottom: 20px;
+}
+form .form-inner {
+    padding: 0px 15px 40px;
+}
+input {
+    width: 250px;
+    height: 40px;
+    font-size: 19px;
+}
+input[type=submit] {
+    margin-top: 15px;
+    background: dodgerblue;
+    color: white;
+    border: 0;
+}

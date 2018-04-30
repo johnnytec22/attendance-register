@@ -4,7 +4,7 @@ var router = express.Router()
 var admin = require('firebase-admin')
 
 //gets and displays information for a single event 
-router.get('/event/:key', (req, res) => {
+router.get('/event/:key', (req, res, next) => {
     var key = req.params.key;
 
     var db = admin.database();
@@ -22,7 +22,7 @@ router.get('/event/:key', (req, res) => {
             res.render('event_info.pug', {'data':data})
         })
         
-        
+
     })
 }) 
 
@@ -38,6 +38,8 @@ router.get('/:key/edit', (req, res) => {
         data['key'] = snap.key;
 
         res.render('event_edit.pug', {'data':data});
+    }).catch((error) => {
+        res.send('<h1>Am Error Occurred, please try again </h1>');
     })
 
 });
@@ -49,12 +51,14 @@ router.post('/:key/update', (req, res) => {
     var db = admin.database();
     var ref = db.ref('registerapp').child('events').child(key);
 
-    ref.update(req.body).then(function(doc) {
-        res.redirect('/events/event/'+key)
-    }).catch(function(error) {
-        res.send('error: Please, try again')
+    ref.update(req.body, (error) => {
+        if(error) {
+            res.send('error: Please, try again');
+        }else{
+            res.redirect('/events/event/'+key);
+        }
     })
- 
+    
 });
 
 
@@ -95,9 +99,10 @@ router.post('/:title/:key/add_guest', (req, res) => {
         if(error) {
             res.send('Error!');
         }else{
-            var success_msg = encodeURIComponent(req.body.full_name+" was succesfully registered");
-            res.redirect('/events/'+title+'/'+key+'/add_guest?msg='+success_msg)
+            res.send('<p class="alert-success">'+ req.body.full_name +' was successfully registered</p>')
         }
     })
-})
+});
+
+
 module.exports = router;

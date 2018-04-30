@@ -1,24 +1,30 @@
 extends layout
 
+block css 
+    link(rel="stylesheet", href="/css/login.css")
+
 block content
     .container
-        h1 Login To Your Account
+        
 
         if error
-            p Erro: #{error}
+            p Error: #{error}
 
         form(action="/users/login" method="POST")
-            label Username: 
-            br
-            input(type="text", name='username', required)
-            br
-            br
-            label Password
-            br
-            input(type="password", name="password")
+            h4 User Login
 
-            br
-            input(type='submit')
+            .form-inner
+                label Username: 
+                br
+                input(type="text", name='username', required)
+                br
+                br
+                label Password
+                br
+                input(type="password", name="password")
+
+                br
+                input(type='submit')
 
         br
         p Don't have an account? <a href="/users/register">Register now</a>

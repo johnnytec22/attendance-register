@@ -1,13 +1,46 @@
-nav.navbar {
-    margin-bottom: 0 !important;
+nav {
+    background: white;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0, 0.05)
 }
-nav, .nav, .navbar-nav, .navbar-inverse {
-    background: black;
-    color: white;
+ .navbar-inverse {
+    background: white;
     border: 0;
     border-radius: 0;
 }
+#landing {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(228, 228, 228);
+}
 
+.header_text {
+    display: inline-block;
+    margin-top: 20%;
+}
+
+.btn-primary {
+    color: white;
+    background: dodgerblue;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 0;
+}
+.btn-primary:hover {
+    opacity: 0.5;
+    background: dodgerblue;
+}
+
+.btn-default {
+    color: black;
+    border-color: black;
+    box-shadow: 0;
+    border-radius: 0;
+    background: white;
+}
+.btn-default:hover {
+    background: black;
+    color:  white;
+    border-color: black;
+}
 footer {
     margin-top: 50px;
     padding: 50px 0;
@@ -15,5 +48,5 @@ footer {
 }
 footer p {
     margin: 0;
-    padding: 0;
+    padding: 40px 0 0 0;
 }

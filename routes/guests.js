@@ -5,7 +5,7 @@ var admin = require('firebase-admin');
 router.get('/:event_key/:guest_key/edit', (req, res) => {
     var event_key = req.params.event_key;
     var guest_key = req.params.guest_key;
-    var event_name = req.query.event;
+ 
 
     var db = admin.database();
     var ref = db.ref('registerapp').child('guests').child(event_key).child(guest_key);
@@ -15,10 +15,9 @@ router.get('/:event_key/:guest_key/edit', (req, res) => {
             'guest_data':guest_data,
             'event_key': event_key,
             'guest_key': guest_key,
-            'event_name': event_name
+ 
         }
 
-        console.log(context)
         res.render('guest_edit.pug', context);
     })
 })
@@ -29,13 +28,13 @@ router.post('/:event_key/:guest_key/update', (req, res) => {
     var guest_key = req.params.guest_key;
 
     var db = admin.database();
-    var ref = db.ref('registerapp/guests/'+event_key).child(guest_key);
+    var ref = db.ref('registerapp').child('guests').child(event_key).child(guest_key);
 
     ref.update(req.body, (error) => {
         if(error) {
             res.send('Error: Try Again');
         }else{
-            res.redirect('/events/event/'+event_key);
+            res.send('<p class="alert-success"> '+req.body.full_name+ ' registration is successful </p>');
         }
     })
 })
@@ -56,4 +55,4 @@ router.get('/:event_key/:guest_key/delete', (req, res) => {
     });
 })
 
-module.exports = router
+module.exports = router;

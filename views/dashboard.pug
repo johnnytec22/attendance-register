@@ -59,10 +59,7 @@ block content
                         .panel-heading.text-center
                             h2.strong=data.recent_event.title
                             p=data.recent_event.location
-                            if (data.recent_event.status)
-                                p.small Held
-                            else
-                                p.small Upcoming
+                            p=data.recent_event.status
                         .panel-body
                             .row
                                 .col-lg-6.col-md-6.col-sm-6.col-xs-6
@@ -98,11 +95,7 @@ block content
                             .panel-heading.text-center
                                 h2.strong= value.title
                                 p=value.location
-                                if (value.status)
-                                    p.small Held
-                                else
-                                    p.small Upcoming
-
+                                p=value.status
                             .panel-body
                                 .row
                                     .col-lg-6.col-md-6.col-sm-6.col-xs-6
@@ -119,6 +112,9 @@ block content
                                 | 
                                 a.btn.btn-primary.btn-sm(href="/events/"+ key +"/edit") EDIT
 
-                
+
+block js
+    script(src="/js/dash.js")
+               
 
 
