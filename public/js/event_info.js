@@ -106,9 +106,9 @@ window.onclick = function (event) {
     }
 }
 
-delete_close_btn.onclick = function() {
+delete_close_btn.on('click', function() {
     delete_modal.style.display = 'none'
-}
+})
 
 //DELETE FUNCTIONALITY
 $('#recent_guest table tbody .button_container a.delete_btn').on('click', function(event) {
