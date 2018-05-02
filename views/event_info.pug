@@ -1,8 +1,55 @@
 extends dashboard.pug
 
-
+block css 
+    link(rel="stylesheet", href="/css/event_info.css")
 
 block content
+
+    
+    #delete_modal
+        .content.text-center.animate
+            strong#delete_close &times
+            h5(style="color: red; margin-top: 40px;").warning
+
+            a.btn.btn-danger(href="#") DELETE
+    
+    #guest_edit_modal
+        .modal_content.animate.text-center
+            strong#close &times
+        
+            h4.text-uppercase 
+            br
+            h5.message
+            
+            form.text-left( method="POST")
+                .form-group
+                    
+                    label Full Name
+                    input.form-control(type="text", name="full_name", placeholder="Guest Name")
+
+                .form-group
+                    
+                    label Phone
+                    input.form-control(type="text", name="Phone", placeholder="Guest Phone")
+
+                .form-group
+                    
+                    label Email
+                    input.form-control(type="email", name="email", placeholder="Guest Email" )
+
+                .form-group
+                    
+                    label Time In
+                    input.form-control(type="time", name="time_in")
+
+                .form-group
+                    
+                    label Time Out
+                    input.form-control(type="time", name="time_out")
+
+                input.btn.btn-primary.btn-block(type="submit", value="SAVE" )
+
+
     
     section#event_detail(style="padding-top: 100px;")
         .container
@@ -60,60 +107,24 @@ block content
                             if (data.recent_guests)
                                 -var count = 1
                                 each guest,key in data.recent_guests
-                                    tr
-                                        td=count++
-                                        td=guest.full_name
-                                        td=guest.Phone
-                                        td=guest.email
-                                        td=guest.time_in
-                                        td=guest.time_out
+                                    tr(id=key)
+                                        td(id="count")=count++
+                                        td(id="full_name")=guest.full_name
+                                        td(id="Phone")=guest.Phone
+                                        td(id="email")=guest.email
+                                        td(id="time_in")=guest.time_in
+                                        td(id="time_out")=guest.time_out
                                         td 
                                             .button_container.text-center
-                                                button.btn.btn-default#edit_btn(href="/guests/"+data.key+'/'+key+"/edit") Edit
+                                                a.btn.btn-default.edit_btn(href="/guests/"+data.key+'/'+key+"/update", data-guest=guest, data-guest_key=key) Edit
                                                 | 
-                                                a.btn.btn-danger#delete_btn(href="/guests/"+data.key+'/'+key+"/delete") Delete
+                                                a.btn.btn-danger.delete_btn(href="/guests/"+data.key+'/'+key+"/delete", data-guest_name=guest.full_name) Delete
                                     
-                                    #guest_edit_modal
-                                        .modal_content
-                                            if(success_msg)
-                                                p(style="color: green; padding: 20px 0; background: white; box-shadow: 0 4px 6px 5px rgba(0,0,0,0.05); border-radius: 3px; margin-bottom: 40px;")=success_msg
-                                            else if (error_msg)
-                                                h4 Guest data not saved, please try again
-
-                                            h4.text-uppercase EDIT #{guest.full_name}
-                                            br
-                                            
-                                            form(action="/guests/"+data.key+"/"+key+"/update", method="POST")
-                                                .form-group
-                                                    
-                                                    label Full Name
-                                                    input.form-control(type="text", name="full_name", placeholder="Guest Name", value=guest.full_name)
-
-                                                .form-group
-                                                    
-                                                    label Phone
-                                                    input.form-control(type="text", name="Phone", placeholder="Guest Phone", value=guest.Phone)
-
-                                                .form-group
-                                                    
-                                                    label Email
-                                                    input.form-control(type="email", name="email", placeholder="Guest Email", value=guest.email )
-
-                                                .form-group
-                                                    
-                                                    label Time In
-                                                    input.form-control(type="time", name="time_in", value=guest.time_in)
-
-                                                .form-group
-                                                    
-                                                    label Time Out
-                                                    input.form-control(type="time", name="time_out", value=guest.time_out)
-
-                                                input.btn.btn-primary.btn-block(type="submit", value="SAVE" )
                             else
                                 tr.text-center
                                     td(colspan="7") No Guest Registered
                                                 
 
-
+block js
+    script(src="/js/event_info.js")
 

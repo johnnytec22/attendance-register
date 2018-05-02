@@ -23,7 +23,7 @@ router.get('/:event_key/:guest_key/edit', (req, res) => {
 })
 
 
-router.post('/:event_key/:guest_key/update', (req, res) => {
+router.post('/:event_key/:guest_key/update', (req, res, next) => {
     var event_key = req.params.event_key;
     var guest_key = req.params.guest_key;
 
@@ -34,7 +34,7 @@ router.post('/:event_key/:guest_key/update', (req, res) => {
         if(error) {
             res.send('Error: Try Again');
         }else{
-            res.send('<p class="alert-success"> '+req.body.full_name+ ' registration is successful </p>');
+            res.send(req.body.full_name + ' was successfully update');
         }
     })
 })
@@ -48,9 +48,9 @@ router.get('/:event_key/:guest_key/delete', (req, res) => {
 
     ref.remove((error) => {
         if(error) {
-            res.send('<h1>Error: Data not deleted, Please try again</h1>');
+            res.send('Error: Data not deleted, Please try again');
         }else{
-            res.redirect('/events/event/'+event_key);
+            res.send(' was successfully update');
         }
     });
 })

@@ -15,7 +15,7 @@ router.get('/event/:key', (req, res, next) => {
         data['key'] = event_data.key;
 
         var guestRef = db.ref('registerapp').child('guests').child(key)
-        guestRef.on('value', (snap) => {
+        guestRef.once('value', (snap) => {
             data['guest_count'] = snap.numChildren();
             data['recent_guests'] = snap.val();
    
@@ -78,7 +78,7 @@ router.get('/:title/:key/add_guest', (req, res) => {
     var db = admin.database();
     var ref = db.ref('registerapp').child('guests').child(key);
 
-    ref.on('value', (snap) => {
+    ref.once('value', (snap) => {
         var guest_count = snap.numChildren();
         context['guest_count'] = guest_count;
 
