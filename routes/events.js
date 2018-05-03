@@ -88,6 +88,7 @@ router.get('/:title/:key/add_guest', (req, res) => {
     
 })
 
+
 router.post('/:title/:key/add_guest', (req, res) => {
     var key = req.params.key;
     var title = req.params.title;
@@ -99,7 +100,8 @@ router.post('/:title/:key/add_guest', (req, res) => {
         if(error) {
             res.send('Error!');
         }else{
-            res.send('<p class="alert-success">'+ req.body.full_name +' was successfully registered</p>')
+            var message = req.body.full_name +' was successfully registered';
+            res.send(message)
         }
     })
 });

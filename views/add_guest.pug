@@ -3,13 +3,15 @@ extends dashboard
 block content
 
     section#add_guest(style="padding: 100px 0;")
+        .header.text-center
+            h3(style="background: white; padding: 10px; margin: 0;  border-radius: 3px; color: black;")
+                a(href="/events/event/"+key, style="color: black;")=event_title
+
         .container.text-center
 
-            
-            .row
-                h3=event_title
-
             br
+            .row
+                h4 ADD GUEST
             .row
                 .col-lg-4.col-md-4.col-sm-4.col-xs-12
 
@@ -18,10 +20,10 @@ block content
                     else if (error_msg)
                         h4 Guest not saved, please try again
 
-                    h4 ADD GUEST
+                    
                     br
                     
-                    form(action="/events/"+event_title+'/'+key+"/add_guest", method="POST")
+                    form.text-left(action="/events/"+event_title+'/'+key+"/add_guest", method="POST")
                         .form-group
                             
                             label Full Name

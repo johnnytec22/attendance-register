@@ -12,12 +12,23 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-  // Get a database reference to our blog
-  var db = admin.database();
-  var ref = db.ref("registerapp");
-  var userRef = ref.child('users').child(req.body.username)
-  userRef.set(req.body)
-  res.end()
+
+  admin.auth().createUser( {
+    email: req.body.email,
+    password: req.body.password,
+    displayName: req.body.full_name,
+    disabled: false
+  })
+    .then(function(userRecord) {
+      // See the UserRecord reference doc for the contents of userRecord.
+      console.log("Successfully updated user", userRecord.toJSON());
+      res.send('user registered!')
+    })
+    .catch(function(error) {
+      console.log("Error updating user:", error);
+      res.send('error occured')
+    });
+
 });
 
 

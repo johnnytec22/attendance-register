@@ -25,8 +25,7 @@ nav, .nav, .navbar-nav, .navbar-inverse {
     color: black  !important;
 }
 #overview {
-    background: white;
-    background-image: linear-gradient(to right, rgb(0, 60, 255), red);
+    background: rgb(232, 227, 227);
     padding: 150px 0 50px;
     
 }
